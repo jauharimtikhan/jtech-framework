@@ -1,11 +1,15 @@
 {
     "name": "jauhar/j-tech-framework",
-    "description": "Main Framework sistem jtech",
+    "description": "The JTech Framework Core.",
+    "version": "1.0.1",
     "type": "library",
     "autoload": {
         "psr-4": {
             "Jtech\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers/global.php"
+        ]
     },
     "authors": [
         {
@@ -14,7 +18,8 @@
         }
     ],
     "minimum-stability": "dev",
-    "require-dev": {
+    "require": {
+        "php": "^8.2",
         "vlucas/phpdotenv": "^5.6@dev",
         "symfony/var-dumper": "7.4.x-dev",
         "illuminate/database": "12.x-dev",
@@ -35,11 +40,10 @@
         "illuminate/http": "12.x-dev",
         "league/uri": "^7.0@dev"
     },
-    "repositories": {
-        "packagist.org": false,
-        "private-packagist": {
-            "type": "composer",
-            "url": "https://repo.packagist.com/jtech/"
+    "license": "MIT",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-1"
         }
     }
 }
