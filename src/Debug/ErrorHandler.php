@@ -82,6 +82,14 @@ class ErrorHandler
     $message = $messages[$code] ?? 'Terjadi kesalahan yang tidak terduga.';
 
     // Load View Production
+    if (defined('RESOURCEPATH')) {
+      $viewCustom = RESOURCEPATH;
+    } elseif (defined('BASEPATH')) {
+      $viewCustom = BASEPATH . '/resources';
+    } else {
+      // Fallback untuk unit testing atau CLI jika konstanta belum define
+      $viewCustom = getcwd() . '/resources';
+    }
     $viewCustom = RESOURCEPATH . "/views/errors/$code.blade.php";
     if (file_exists($viewCustom)) {
       require $viewCustom;
