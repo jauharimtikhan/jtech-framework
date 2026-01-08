@@ -2,7 +2,6 @@
 
 namespace Jtech;
 
-use App\Middleware\VerifyCsrfToken;
 use Dotenv\Dotenv;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
@@ -15,6 +14,7 @@ use Jtech\Http\Request;
 use Jtech\Providers\DatabaseServiceProvider;
 use Jtech\Providers\PaginationServiceProvider;
 use Jtech\Providers\RouteServiceProvider;
+use App\Providers\AppServiceProvider;
 
 class Bootstrap
 {
@@ -177,7 +177,7 @@ class Bootstrap
         // 1. Database & Pagination
         $this->app->register(new DatabaseServiceProvider($this->app));
         $this->app->register(new PaginationServiceProvider($this->app));
-
+        $this->app->register(new AppServiceProvider($this->app));
         // 2. Session Manager
         // SessionManager butuh container yg punya 'config' (repository) dan 'files'
         $this->app->singleton('session', function ($app) {
