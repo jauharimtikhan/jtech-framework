@@ -164,10 +164,10 @@ if (!function_exists('route')) {
     function route(string $key): ?string
     {
         $routes = Route::getRoutes();
-        $current = null;
+        $current = "";
         foreach ($routes as  $route) {
             if ($route['name'] === $key) {
-                $current = base_url($route['uri']);
+                $current .= base_url($route['uri']);
             }
         }
         return $current;
@@ -241,37 +241,5 @@ if (!function_exists('abort')) {
     function abort(int $code, string $message = '')
     {
         throw new HttpException($code, $message);
-    }
-}
-
-if (!function_exists('app_version')) {
-    /**
-     * Get application version from composer.json
-     */
-    function app_version()
-    {
-        // 1. Static Variable: Caching sederhana dalam satu siklus request
-        // Biar kalau dipanggil 10x, dia cuma baca file 1x.
-        static $version = null;
-
-        if ($version !== null) {
-            return $version;
-        }
-
-        // 2. Lokasi file composer.json
-        // Pastikan BASEPATH sudah didefine di index.php
-        $composerFile = BASEPATH . '/composer.json';
-
-        if (file_exists($composerFile)) {
-            $content = file_get_contents($composerFile);
-            $json = json_decode($content, true);
-
-            // Ambil key 'version', kalau gak ada default ke '1.0.0'
-            $version = $json['version'] ?? '1.0.0';
-        } else {
-            $version = '1.0.0'; // Fallback kalau file ilang
-        }
-
-        return $version;
     }
 }
