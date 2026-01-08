@@ -13,7 +13,7 @@ class ViewFinder
 
     public function find(string $name): string
     {
-        $path = $this->basePath . '/' . str_replace('.', '/', $name) . '.blade.php';
+        $path = $this->basePath . '/' . str_replace('.', '/', $name) . '.jtech.php';
 
         if (!file_exists($path)) {
             throw new \Exception("View [$name] not found");
