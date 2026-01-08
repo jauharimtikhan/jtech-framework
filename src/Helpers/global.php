@@ -243,3 +243,18 @@ if (!function_exists('abort')) {
         throw new HttpException($code, $message);
     }
 }
+
+if (!function_exists('app_version')) {
+    function app_version()
+    {
+        if (class_exists(\Composer\InstalledVersions::class)) {
+            try {
+                // Mengambil versi root package (project user)
+                return \Composer\InstalledVersions::getRootPackage()['version'];
+            } catch (\Throwable $e) {
+                return '1.0.0';
+            }
+        }
+        return '1.0.0';
+    }
+}
