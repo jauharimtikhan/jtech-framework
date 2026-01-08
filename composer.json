@@ -1,0 +1,38 @@
+{
+    "name": "jauhar/j-tech-framework",
+    "description": "Main Framework sistem jtech",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jtech\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jauhar-imtikhan",
+            "email": "bangjoe.muns@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.6@dev",
+        "symfony/var-dumper": "7.4.x-dev",
+        "illuminate/database": "12.x-dev",
+        "illuminate/pagination": "12.x-dev",
+        "illuminate/events": "12.x-dev",
+        "illuminate/support": "12.x-dev",
+        "illuminate/validation": "12.x-dev",
+        "illuminate/translation": "12.x-dev",
+        "illuminate/filesystem": "12.x-dev",
+        "ramsey/uuid": "5.x-dev",
+        "nesbot/carbon": "^3.0@dev",
+        "illuminate/session": "12.x-dev",
+        "illuminate/config": "12.x-dev",
+        "symfony/http-foundation": "^7.4.0|^8.0.0",
+        "symfony/http-kernel": "^7.4.0|^8.0.0",
+        "symfony/polyfill-php85": "^1.33",
+        "symfony/mime": "^7.4.0|^8.0.0",
+        "illuminate/http": "12.x-dev",
+        "league/uri": "^7.0@dev"
+    }
+}
