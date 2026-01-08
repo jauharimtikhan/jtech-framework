@@ -39,10 +39,5 @@
         "illuminate/http": "12.x-dev",
         "league/uri": "^7.0@dev"
     },
-    "license": "MIT",
-    "extra": {
-        "branch-alias": {
-            "main": "1.0-dev"
-        }
-    }
+    "license": "MIT"
 }
