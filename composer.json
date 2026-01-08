@@ -43,7 +43,7 @@
     "license": "MIT",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-1"
+            "main": "1.0.1"
         }
     }
 }
