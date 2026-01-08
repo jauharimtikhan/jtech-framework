@@ -43,13 +43,46 @@ class Bootstrap
      */
     public function create()
     {
-        // A. Load Config Files ke Repository (Biar support dot notation: config('session.driver'))
         $configItems = [];
-        foreach (glob(__DIR__ . '/../config/*.php') as $file) {
-            $configItems[basename($file, '.php')] = require $file;
+
+        // 1. Tentukan Path Config
+        // Prioritas: Konstanta CONFIG_PATH > BASEPATH/config > Error
+        if (defined('CONFIG_PATH')) {
+            $path = CONFIG_PATH;
+        } elseif (defined('BASEPATH')) {
+            $path = BASEPATH . '/config';
+        } else {
+            // Fallback untuk unit testing atau CLI jika konstanta belum define
+            $path = getcwd() . '/config';
         }
 
-        // Bind Config sebagai Repository, bukan array biasa
+        // 2. Load Config User (Override)
+        if (is_dir($path)) {
+            foreach (glob($path . '/*.php') as $file) {
+                $configItems[basename($file, '.php')] = require $file;
+            }
+        }
+
+        // [OPSIONAL TAPI PENTING] 
+        // Load Default Config dari Framework Core (Vendor)
+        // Supaya kalau user lupa bikin file config/session.php, framework gak error.
+        $defaultPath = __DIR__ . '/../config'; // Ini config bawaan framework di folder vendor
+        if (is_dir($defaultPath)) {
+            foreach (glob($defaultPath . '/*.php') as $file) {
+                $key = basename($file, '.php');
+
+                // Logic: Ambil config user, kalau gak ada ambil default
+                // Kalau mau canggih pake array_replace_recursive buat merge isinya
+                if (!isset($configItems[$key])) {
+                    $configItems[$key] = require $file;
+                } else {
+                    // Merge array biar settingan user nimpah default
+                    $defaultConfig = require $file;
+                    $userConfig = $configItems[$key];
+                    $configItems[$key] = array_replace_recursive($defaultConfig, $userConfig);
+                }
+            }
+        }
         $this->app->singleton('config', fn() => $configItems);
         $this->container->singleton('config', function () use ($configItems) {
 

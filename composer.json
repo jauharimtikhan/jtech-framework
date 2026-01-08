@@ -1,7 +1,7 @@
 {
     "name": "jauhar/j-tech-framework",
     "description": "The JTech Framework Core.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "library",
     "autoload": {
         "psr-4": {
