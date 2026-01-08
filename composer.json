@@ -1,7 +1,7 @@
 {
     "name": "jauhar/j-tech-framework",
     "description": "Main Framework sistem jtech",
-    "type": "project",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Jtech\\": "src/"
@@ -34,5 +34,12 @@
         "symfony/mime": "^7.4.0|^8.0.0",
         "illuminate/http": "12.x-dev",
         "league/uri": "^7.0@dev"
+    },
+    "repositories": {
+        "packagist.org": false,
+        "private-packagist": {
+            "type": "composer",
+            "url": "https://repo.packagist.com/jtech/"
+        }
     }
 }
